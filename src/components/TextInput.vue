@@ -1,8 +1,8 @@
 <template> <!--body-->
-  <div class="text-input">
+  <div class="text-input" :class="">
     <label for="input">{{ label }}</label>
       <div class="input-container">
-        <input id="input" type="text" :style="styles">
+        <input id="input" type="text" :style="baseStyles">
         <div class="border"></div>
       </div>
     <p v-if="description">{{ description }}</p>
@@ -26,8 +26,12 @@ export default {
     };
   },
   computed: {
-    styles: function() {
-      return { backgroundColor: (this.fill === '') ? this.defaultFill : this.fill } 
+    baseStyles: function() {
+      return { backgroundColor: (this.fill === '') ? this.defaultFill : this.fill };
+    },
+
+    validation: function() {
+      return {  };
     }
   }
 }
@@ -49,6 +53,25 @@ export default {
   }
 
   .input-container {
-    border: 1px solid;
+    //if input error
+    border: 2px solid rgba(#F23535, 100%);
+
+    //if input warning
+    border: 2px solid rgba(#E1A20E, 100%);
+
+    //if input accepted
+    border: 2px solid rgba(#0BB35C, 100%);
+  }
+
+  .is-valid {
+
+  }
+
+  .has-warning {
+
+  }
+
+  .has-error {
+
   }
 </style>

@@ -1,7 +1,10 @@
 <template> <!--body-->
   <div class="text-input">
     <label for="input">{{ label }}</label>
-    <input id="input" type="text" :style="styles">
+      <div class="input-container">
+        <input id="input" type="text" :style="styles">
+        <div class="border"></div>
+      </div>
     <p v-if="description">{{ description }}</p>
   </div>
 </template>
@@ -43,5 +46,9 @@ export default {
     &:focus {
       outline: 2px solid  #4E44D6;
     }
+  }
+
+  .input-container {
+    border: 1px solid;
   }
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <TextInput/>
+    <text-input type="single-line" validate>
+      <template slot="label">Input label</template>
+      <template slot="description">Input description</template>
+    </text-input>
   </div>
 </template>
 

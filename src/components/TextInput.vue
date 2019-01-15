@@ -1,18 +1,23 @@
 <template>
   <fieldset class="text-input">
-    <label for="input"><slot></slot></label>
+    <label for="input"><slot name="label"></slot></label>
+    
     <div class="input-container">
       <input type="text" id="input">
-      <div class="input-border"></div>
+      <div class="state-border"></div>
     </div>
+
     <p><slot name="description"></slot></p>
   </fieldset>
 </template>
 
+
+
 <script>
 export default {
   name: 'TextInput',
-  fill: { type: String, default: '' }
+  fill: { type: String, default: '' },
+  type: { type: Boolean, default: false }
 };
 </script>
 
@@ -22,9 +27,18 @@ export default {
     padding: 0;
   }
 
+  label {
+    display: block;
+  }
+
+  .input-container {
+    display: inline-block;
+    position: relative;
+  }
+
   input {
     padding: 12px 16px;
-    border: 1px solid rgba(#000, 0.4);
+    border: 1px solid $sdg-c-divider-dark-2;
     border-radius: 4px;
     background: $sdg-c-gray-10;
     
@@ -32,8 +46,12 @@ export default {
       color: rgba(#000, 0.4);
     }
 
-    &:focus {
-      outline: 2px solid  #4E44D6;
+    .state-border {
+      @include overlay(-1px, -1px, -1px, -1px);
+      border-radius: inherit;
+      border-width: 2px;
+      border-style: solid;
+      border-color: $sdg-c-deep-purple-50;
     }
   }
 

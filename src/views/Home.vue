@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <TextInput label="Mahmoud is dik" fill></TextInput>
+    <TextInput
+      label="Mahmoud is dik"
+      fill
+    />
   </div>
 </template>
 
@@ -9,7 +12,7 @@
 import TextInput from '@/components/TextInput.vue'
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
     TextInput
   }

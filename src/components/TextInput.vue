@@ -1,11 +1,19 @@
-<template> <!--body-->
-  <div class="text-input" :class="">
-    <label for="input">{{ label }}</label>
-      <div class="input-container">
-        <input id="input" type="text" :style="baseStyles">
-        <div class="border"></div>
-      </div>
-    <p v-if="description">{{ description }}</p>
+<template>
+  <div class="text-input">
+    <label for="input">
+      {{ label }}
+    </label>
+    <div class="input-container">
+      <input
+        id="input"
+        type="text"
+        :style="baseStyles"
+      >
+      <div class="border" />
+    </div>
+    <p v-if="description">
+      {{ description }}
+    </p>
   </div>
 </template>
 
@@ -23,15 +31,15 @@ export default {
   data: function () {
     return {
       defaultFill: '#F2F2F2'
-    };
+    }
   },
   computed: {
-    baseStyles: function() {
-      return { backgroundColor: (this.fill === '') ? this.defaultFill : this.fill };
+    baseStyles: function () {
+      return { backgroundColor: (this.fill === '') ? this.defaultFill : this.fill }
     },
 
-    validation: function() {
-      return {  };
+    validation: function () {
+      return { }
     }
   }
 }
@@ -42,7 +50,7 @@ export default {
     border: 1px solid rgba( #000000, 40%);
     border-radius: 4px;
     padding: 12px 16px;
-    
+
     &::placeholder {
       color: rgba( #000000, 40%);
     }

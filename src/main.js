@@ -1,9 +1,16 @@
-import 'normalize.css';
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import ds from './datasharing-plugin.js'
+import 'normalize.css'
 
-Vue.config.productionTip = false;
+let dsObservables = []
+
+Vue.config.productionTip = false
+
+Vue.use(ds, {
+  list: dsObservables
+})
 
 new Vue({
   router,

@@ -34,12 +34,8 @@ export default {
     }
   },
   computed: {
-    baseStyles: function () {
+    styles: function () {
       return { backgroundColor: (this.fill === '') ? this.defaultFill : this.fill }
-    },
-
-    validation: function () {
-      return { }
     }
   }
 }
@@ -50,7 +46,6 @@ export default {
     border: 1px solid rgba( #000000, 40%);
     border-radius: 4px;
     padding: 12px 16px;
-
     &::placeholder {
       color: rgba( #000000, 40%);
     }

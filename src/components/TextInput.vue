@@ -1,63 +1,103 @@
 <template>
-  <fieldset class="text-input">
-    <label for="input"><slot name="label"></slot></label>
-    
-    <div class="input-container">
-      <input type="text" id="input">
-      <div class="state-border"></div>
-    </div>
+  <fieldset class="text-input" :class="{ 'is-active': isActive }">
+    <label for="input" v-if="$slots.label">
+      <slot name="label"/>
+      <span class="tag" v-if="tag != null">&nbsp;{{ tagText }}</span>
+    </label>
 
-    <p><slot name="description"></slot></p>
+    <input 
+      id="input" 
+      type="text" 
+      :style="{ backgroundColor: fill != null && (fill || '#F2F2F2') }"
+      @focus="isActive = true;"
+      @blur="isActive = false"
+    >
+
+    <p class="caption" v-if="$slots.caption"><slot name="caption"/></p>
   </fieldset>
 </template>
-
-
 
 <script>
 export default {
   name: 'TextInput',
-  fill: { type: String, default: '' },
-  type: { type: Boolean, default: false }
-};
+  data() {
+    return {
+      isActive: false
+    }
+  },
+  props: {
+    required: { default: false, type: Boolean },
+    tag: { default: null, type: String },
+    fill: { default: null, type: String },
+    type: { default: 'single-line', type: String }
+  },
+  computed: {
+    tagText() {
+      if (this.tag != null && this.tag != '') {
+        return this.tag;
+      } else if (this.tag != null && this.required) {
+        return ' (required)';
+      } else if (this.tag != null && !this.required) {
+        return ' (optional)';
+      } 
+    },
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-  .text-input {
-    border: none;
-    padding: 0;
+.text-input {
+  border: none;
+  margin: 16px 0;
+  padding: 0;
+  max-width: 400px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: $sdg-c-heading-dark;
+
+  .tag {
+    color: rgba(#000, 0.4);
+  }
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid $sdg-c-divider-dark-2;
+  border-radius: 4px;
+  transition: box-shadow 0.125s ease;
+
+  &:focus {
+    outline: none;
   }
 
+  &::placeholder {
+    color: rgba(#000, 0.4);
+  }
+}
+
+.caption {
+  margin: 12px 0 0 0;
+}
+
+// State modifiers
+.is-active {
   label {
-    display: block;
-  }
-
-  .input-container {
-    display: inline-block;
-    position: relative;
+    color: $sdg-c-deep-purple-50;
   }
 
   input {
-    padding: 12px 16px;
-    border: 1px solid $sdg-c-divider-dark-2;
-    border-radius: 4px;
-    background: $sdg-c-gray-10;
-    
-    &::placeholder {
-      color: rgba(#000, 0.4);
-    }
-
-    .state-border {
-      @include overlay(-1px, -1px, -1px, -1px);
-      border-radius: inherit;
-      border-width: 2px;
-      border-style: solid;
-      border-color: $sdg-c-deep-purple-50;
-    }
+    box-shadow: 0 0 0 2px $sdg-c-deep-purple-50; 
   }
+}
 
-  .is-valid {}
+.is-valid {}
 
-  .has-warning {}
+.has-warning {}
 
-  .has-error {}
+.has-error {}
 </style>

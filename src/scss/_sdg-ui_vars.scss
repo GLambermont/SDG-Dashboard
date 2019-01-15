@@ -8,7 +8,7 @@ $sdg-c-gray-50: #ADADAD;
 $sdg-c-gray-40: #CCCCCC;
 $sdg-c-gray-30: #DBDBDB;
 $sdg-c-gray-20: #EBEBEB;
-$sdg-c-gray-10: #2F2F2F;
+$sdg-c-gray-10: #F2F2F2;
 
 $sdg-c-pink-100: #401229;
 $sdg-c-pink-90: #610A3B;
@@ -76,6 +76,12 @@ $sdg-c-copy-dark: rgba(#000, 0.7);
 
 $sdg-c-heading-light: #FFF;
 $sdg-c-copy-light: rgba(#FFF, 0.8);
+
+$sdg-c-divider-dark-1: rgba(#000, 0.18);
+$sdg-c-divider-dark-2: rgba(#000, 0.4); 
+
+$sdg-c-divider-light-1: rgba(#fff, 0.25);
+$sdg-c-divider-light-2: rgba(#000, 0.5); 
 
 // Typography
 $sdg-font-stack-system: system_ui, _apple_system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans_serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';

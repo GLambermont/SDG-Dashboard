@@ -1,58 +1,35 @@
 <template>
-  <div class="text-input">
-    <label for="input">
-      {{ label }}
-    </label>
+  <fieldset class="text-input">
+    <label for="input"><slot></slot></label>
     <div class="input-container">
-      <input
-        id="input"
-        type="text"
-        :style="baseStyles"
-      >
-      <div class="border" />
+      <input type="text" id="input">
+      <div class="input-border"></div>
     </div>
-    <p v-if="description">
-      {{ description }}
-    </p>
-  </div>
+    <p><slot name="description"></slot></p>
+  </fieldset>
 </template>
 
 <script>
 export default {
   name: 'TextInput',
-  props: {
-    label: String,
-    description: String,
-    fill: String,
-    inputError: String,
-    inputWarning: String,
-    inputAccepted: String
-  },
-  data: function () {
-    return {
-      defaultFill: '#F2F2F2'
-    }
-  },
-  computed: {
-    baseStyles: function () {
-      return { backgroundColor: (this.fill === '') ? this.defaultFill : this.fill }
-    },
-
-    validation: function () {
-      return { }
-    }
-  }
-}
+  fill: { type: String, default: '' }
+};
 </script>
 
 <style lang="scss" scoped>
-  input {
-    border: 1px solid rgba( #000000, 40%);
-    border-radius: 4px;
-    padding: 12px 16px;
+  .text-input {
+    border: none;
+    padding: 0;
+  }
 
+  input {
+    padding: 12px 16px;
+    border: 1px solid rgba(#000, 0.4);
+    border-radius: 4px;
+    background: $sdg-c-gray-10;
+    
     &::placeholder {
-      color: rgba( #000000, 40%);
+      color: rgba(#000, 0.4);
     }
 
     &:focus {
@@ -60,26 +37,9 @@ export default {
     }
   }
 
-  .input-container {
-    //if input error
-    border: 2px solid rgba(#F23535, 100%);
+  .is-valid {}
 
-    //if input warning
-    border: 2px solid rgba(#E1A20E, 100%);
+  .has-warning {}
 
-    //if input accepted
-    border: 2px solid rgba(#0BB35C, 100%);
-  }
-
-  .is-valid {
-
-  }
-
-  .has-warning {
-
-  }
-
-  .has-error {
-
-  }
+  .has-error {}
 </style>

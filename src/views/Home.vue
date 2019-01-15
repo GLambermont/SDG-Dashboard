@@ -1,9 +1,6 @@
 <template>
   <div class="home">
-    <TextInput
-      label="Mahmoud is dik"
-      fill
-    />
+    <TextInput/>
   </div>
 </template>
 

@@ -10,7 +10,7 @@ import NodeListComponent from '@/components/NodeList.vue'
 import SensorListComponent from '@/components/SensorList.vue'
 
 export default {
-  name: 'Selectie',
+  name: 'Dashboard',
   components: {
     NodeListComponent,
     SensorListComponent

@@ -5,7 +5,7 @@ import ds from './datasharing-plugin.js'
 import 'normalize.css'
 
 let dsObservables = []
-
+Vue.prototype.$hostname = 'http://iotstadslab.herokuapp.com'
 Vue.config.productionTip = false
 
 Vue.use(ds, {

@@ -1,11 +1,5 @@
 <template>
-  <div class="home">
-    <TextInput
-      label="Mahmoud is dik"
-      fill
-    />
   <div>
-    <PageHeader></PageHeader> 
     <main> 
       <div class="page-section">
         <div class="content-width">
@@ -28,15 +22,12 @@
 <script>
 // @ is an alias to /src
 import TextInput from '@/components/TextInput.vue'
-import PageHeader from '@/components/PageHeader.vue'
 import Button from '@/components/Button.vue'
 
 export default {
   name: 'Home',
   components: {
     TextInput,
-    NodeListComponent,
-    SensorListComponent
   }
 }
 </script>

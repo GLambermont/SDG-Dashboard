@@ -9,7 +9,6 @@
 
 <script>
 const axios = require('axios')
-const url = 'http://192.168.1.111:3000/v0/sensors'
 
 export default {
   name: 'NodeListComponent',
@@ -25,7 +24,7 @@ export default {
     }
   },
   mounted () {
-    axios.get(url)
+    axios.get(this.$hostname + '/v0/sensors')
       .then(resp => {
         this.list = resp.data
       })

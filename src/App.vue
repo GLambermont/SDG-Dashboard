@@ -1,18 +1,26 @@
+
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">
-        Home
-      </router-link> |
-      <router-link to="/about">
-        About
-      </router-link>
+      <page-header />
     </div>
     <router-view />
   </div>
 </template>
 
+<script>
+import PageHeader from '@/components/PageHeader.vue'
+export default {
+  name: 'App',
+  components: {
+    PageHeader
+  }
+}
+</script>
+
 <style lang="scss">
+  /* eslint-disable */
+
   // Google Fonts
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
 

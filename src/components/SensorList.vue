@@ -8,7 +8,6 @@
 
 <script>
 const axios = require('axios')
-const url = 'http://192.168.1.111:3000/v0/sensors/'
 
 export default {
   name: 'SensorListComponent',
@@ -20,7 +19,7 @@ export default {
   },
   mounted () {
     this.$dsGetObservable('node').subscribe(node => {
-        axios.get(url + node)
+        axios.get(this.$hostname + '/v0/sensors/' + node)
         .then(resp => {
             this.list = resp.data
         })

@@ -12,8 +12,17 @@
   </div>
 </template>
 
+<script>
+import 'normalize.css';
+
+export default {
+  
+}
+</script>
+
+
+
 <style lang="scss">
-  // Google Fonts
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
 
   // Base styling
@@ -67,7 +76,7 @@
     line-height: 1.5;
   }
   
-  h6, .h6 { 
+  h6, .h6 {
     font-size: $sdg-font-size-h6;
     font-weight: 600;
     line-height: 1.5;
@@ -84,7 +93,7 @@
     text-transform: uppercase;
   }
 
-  pre, 
+  pre,
   code, .code {
     font-family: $sdg-font-stack-system-mono;
   }
@@ -99,7 +108,7 @@
     h5, .h5 { margin: 0.25em 0; }
     h6, .h6 { margin: 0.3em 0; }
 
-    &.bottom-spacing { 
+    &.bottom-spacing {
       margin-bottom: 56px; 
     }
   }

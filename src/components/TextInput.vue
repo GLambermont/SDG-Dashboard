@@ -66,15 +66,4 @@ export default {
     border: 2px solid rgba(#0BB35C, 100%);
   }
 
-  .is-valid {
-
-  }
-
-  .has-warning {
-
-  }
-
-  .has-error {
-
-  }
 </style>

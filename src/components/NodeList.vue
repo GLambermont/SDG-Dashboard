@@ -1,6 +1,5 @@
 <template>
   <div class="item-list">
-      <h1>Nodes</h1>
       <ul v-for="item in list" :key="item">
           <li @click="update(item)">{{ item }} | <span class="right" data-feather="star"></span> <span class="right" data-feather="trash-2"></span></li>
       </ul>

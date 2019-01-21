@@ -23,9 +23,8 @@
 
 <script>
 // @ is an alias to /src
-import TextInput from '@/components/TextInput.vue'
-import router from '../router'
 import 'normalize.css'
+import TextInput from '@/components/TextInput.vue'
 import CTAButton from '@/components/CTAButton.vue';
 
 export default {

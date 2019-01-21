@@ -4,10 +4,18 @@
     "node": true
   },
   "extends": [
-    "plugin:vue/strongly-recommended",
+    "plugin:vue/essential",
     "@vue/standard"
   ],
   "parserOptions": {
     "parser": "babel-eslint"
+  },
+  "rules": {
+    "semi": "off",
+    "eol-last": "off",
+    "no-trailing-spaces": "off",
+    "comma-dangle": "off",
+    "vue/html-indent": "off",
+    "vue/html-self-closing": "off"
   }
 }

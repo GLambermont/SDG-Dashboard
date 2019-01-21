@@ -11,7 +11,5 @@
 <script>
 export default {
   name: 'PageHeader',
-  props: {},
-  data: {}
-}
+};
 </script>

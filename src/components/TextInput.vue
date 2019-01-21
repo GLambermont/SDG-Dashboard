@@ -2,35 +2,36 @@
   <fieldset class="text-input" :class="baseClasses">
     <label :for="`${id}-input`" v-if="$slots.label">
       <slot class="test" name="label" />
-      <span class="tag" v-if="tag != null">&nbsp; {{ tagText }}</span>
+      <span class="tag" v-if="tag != null">{{ tagText }}</span>
     </label>
 
     <!-- Single line input -->
     <input :id="`${id}-input`"
       v-if="type != 'textarea'"
-      :type="convertedInputType" 
+      :type="convertedInputType"
       :style="inputStyles"
       :required="required"
       :pattern="pattern"
       :disabled="disabled"
-      @focus="isActive = true" 
-      @blur="isActive = false" 
+      @focus="isActive = true"
+      @blur="isActive = false"
       @change="validate"
     >
 
     <!-- Multi line input -->
     <textarea :id="`${id}-input`"
       v-if="type === 'textarea'"
-      name="" 
-      cols="30" 
-      rows="10" 
-      :style="inputStyles" 
+      name=""
+      cols="30"
+      rows="10"
+      :style="inputStyles"
       :disabled="disabled"
-      @focus="isActive = true" 
+      @focus="isActive = true"
       @blur="isActive = false"
     ></textarea>
 
     <p class="caption" v-if="$slots.caption"><slot name="caption"/></p>
+    <p class="caption" v-if="$slots['error-caption'] && isInvalid"><slot name="error-caption"/></p>
   </fieldset>
 </template>
 
@@ -48,6 +49,7 @@ export default {
   },
   mounted() {
     this.id = this._uid;
+    console.log(this.$slots['error-caption'])
   },
   props: {
     disabled: { default: false, type: Boolean },
@@ -64,16 +66,16 @@ export default {
       if (this.tag != null && this.tag != '') {
         return this.tag;
       } else if (this.tag != null && this.required) {
-        return ' (required)';
+        return '(required)';
       } else if (this.tag != null && !this.required) {
-        return ' (optional)';
-      } 
+        return '(optional)';
+      }
     },
-    
+
     // Classes for the fieldset element
     baseClasses() {
       return {
-        'is-disabled': this.disabled, 
+        'is-disabled': this.disabled,
         'is-active': this.isActive,
         'is-valid': this.required && this.isValid,
         'is-invalid': this.required && this.isInvalid,
@@ -86,7 +88,7 @@ export default {
     },
 
     // Convert type to a text type
-    convertedInputType() {      
+    convertedInputType() {
       if(this.supportedTypes.includes(this.type)) {
         return this.type;
       } else {
@@ -97,10 +99,10 @@ export default {
     }
   },
   methods: {
-    // Validate the input based on native HTML validation 
-    validate() {      
+    // Validate the input based on native HTML validation
+    validate() {
       const inputEl = this.$el.querySelector('input');
-      
+
       this.isValid = inputEl.validity.valid;
       this.isInvalid = !inputEl.validity.valid;
     }
@@ -123,6 +125,7 @@ label {
   color: $sdg-c-heading-dark;
 
   .tag {
+    margin-left: 8px;
     color: rgba(#000, 0.4);
   }
 }
@@ -175,7 +178,7 @@ input[type='search'] {
 
   input,
   textarea {
-    box-shadow: 0 0 0 2px $sdg-c-deep-purple-50; 
+    box-shadow: 0 0 0 2px $sdg-c-deep-purple-50;
   }
 }
 
@@ -187,7 +190,7 @@ input[type='search'] {
 
   input,
   textarea {
-    box-shadow: 0 0 0 2px $sdg-c-success-green; 
+    box-shadow: 0 0 0 2px $sdg-c-success-green;
   }
 }
 
@@ -199,7 +202,7 @@ input[type='search'] {
 
   input,
   textarea {
-    box-shadow: 0 0 0 2px $sdg-c-error-red; 
+    box-shadow: 0 0 0 2px $sdg-c-error-red;
   }
 }
 </style>

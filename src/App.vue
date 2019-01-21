@@ -1,29 +1,23 @@
 
 <template>
   <div id="app">
-    <page-header></page-header>
+    <PageHeader></PageHeader>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import 'normalize.css';
-import feather from 'feather-icons';
 import PageHeader from '@/components/PageHeader.vue';
 
 export default {
   name: 'App',
   components: {
-    PageHeader
-  },
-  mounted() {
-    feather.replace();
+    PageHeader,
   }
 };
 </script>
 
 <style lang="scss">
-  // Google Fonts
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
 
   // Base styling
@@ -35,11 +29,18 @@ export default {
     box-sizing: inherit;
   }
 
+  html,
+  body {
+    min-height: 100%;
+  }
+
   body {
     color: $sdg-c-copy-dark;
     font-family: $sdg-font-stack-copy;
     font-size: 16px;
     line-height: 1.5;
+    background: bottom left no-repeat url('images/backgrounds/bg-shape_left.svg'),
+                top right no-repeat url('images/backgrounds/bg-shape_right.svg'),;
   }
 
   // Typography
@@ -76,7 +77,6 @@ export default {
     font-weight: 400;
     line-height: 1.5;
   }
-
   h6, .h6 {
     font-size: $sdg-font-size-h6;
     font-weight: 600;

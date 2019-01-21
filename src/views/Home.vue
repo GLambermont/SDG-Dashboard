@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div>    
     <main>
       <div class="content-section">
         <div class="content-width-s">
@@ -22,7 +22,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import 'normalize.css'
 import TextInput from '@/components/TextInput.vue'
 import CTAButton from '@/components/CTAButton.vue';

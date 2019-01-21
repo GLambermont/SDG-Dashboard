@@ -7,33 +7,23 @@
 
     <!-- Single line input -->
     <div class="input-container">
-      <i class="icon search" data-feather="search" v-if="type === 'search'"></i>
+      <SearchIcon v-if="type === 'search'" />
 
-      <input :id="`${id}-input`"
-        v-if="type != 'textarea'"
-        v-model="value"
-        :type="convertedInputType"
-        :style="inputStyles"
-        :required="required"
-        :pattern="pattern"
-        :disabled="disabled"
-        @focus="isActive = true"
-        @blur="isActive = false"
-        @change="validate"
-      >
-
-      <!-- Multi line input -->
-      <textarea :id="`${id}-input`"
-        v-if="type === 'textarea'"
-        v-model="value"
-        name=""
-        cols="30"
-        rows="10"
+      <component 
+        :is="type === 'textarea' ? 'textarea' : 'input'" 
+        :type="type === 'textarea' ? null : convertedInputType"
+        :required="type === 'textarea' ? null : required"
+        :pattern="type === 'textarea' ? null : pattern"
         :style="inputStyles"
         :disabled="disabled"
+        :cols="type === 'textarea' ? cols : null" 
+        :rows="type === 'textarea' ? rows : null"
+        :placeholder="placeholder"
         @focus="isActive = true"
         @blur="isActive = false"
-      ></textarea>
+        @change="type === 'textarea' ? null : validate"
+        v-model="value"
+      ></component>
     </div>
 
     <p class="caption" v-if="$slots.caption"><slot name="caption"/></p>
@@ -42,30 +32,37 @@
 </template>
 
 <script>
+import { SearchIcon } from 'vue-feather-icons'
+
 export default {
   name: 'TextInput',
+  components: {
+    SearchIcon
+  },
   data() {
     return {
       id: null,
       isActive: false,
       isValid: false,
       isInvalid: false,
-      supportedTypes: ['date', 'datetime-local', 'email', 'month', 'number', 'password', 'range', 'search', 'tel', 'text', 'time', 'url', 'week'],
+      supportedTypes: ['date', 'datetime-local', 'email', 'month', 'number', 'password', 'range', 'search', 'tel', 'text', 'time', 'url', 'week', 'textarea'],
       value: ''
     }
   },
   mounted() {
     this.id = this._uid;
-    console.log(this.$slots['error-caption'])
   },
   props: {
     disabled: { default: false, type: Boolean },
+    placeholder: { default: null, type: String },
     'read-only': { default: false, type: Boolean },
     required: { default: false, type: Boolean },
     pattern: { default: null, type: String },
     tag: { default: null, type: String },
     fill: { default: null, type: String },
-    type: { default: 'text', type: String }
+    type: { default: 'text', type: String },
+    cols: { default: 30, type: Number },
+    rows: { default: 10, type: Number }
   },
   computed: {
     // Set text of tag element
@@ -143,12 +140,21 @@ label {
   border: 1px solid $sdg-c-divider-dark-2;
   border-radius: 4px;
   transition: box-shadow 0.125s ease;
+
+  .feather {
+    @include pos-center('y');
+    left: 12px;
+    width: 24px;
+    height: 24px;
+  }
 }
 
 input, textarea {
+  display: block;
   padding: 12px;
   width: 100%;
   border: none;
+  border-radius: inherit;
   background: none;
 
   &:focus {
@@ -168,16 +174,10 @@ input, textarea {
   margin: 12px 0 0 0;
 }
 
-.icon {
-  @include pos-center('y');
-  left: 12px;
-  width: 24px;
-  height: 24px;
-}
-
 // State modifiers
 .is-disabled {
   pointer-events: none;
+  cursor: default;
 
   label,
   .caption {
@@ -196,10 +196,10 @@ input, textarea {
 
   .input-container {
     box-shadow: 0 0 0 2px $sdg-c-deep-purple-50;
-  }
-
-  .icon {
-    stroke: $sdg-c-deep-purple-50;
+  
+    .feather {
+      stroke: $sdg-c-deep-purple-50;
+    }
   }
 }
 

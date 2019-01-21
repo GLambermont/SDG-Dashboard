@@ -46,17 +46,21 @@ export default {
   a {
     display: inline-block;
     position: relative;
-    margin-left: 16px;
+    padding: 0 16px;
     color: $sdg-c-copy-dark;
     text-decoration: none;
 
     // Link divider
-    &:not(:last-child)::after {
+    &:not(:first-child)::after {
       content: '';
       @include pos-center('y');
-      right: 0;
+      left: 0;
       height: 16px;
       border-left: 1px solid $sdg-c-divider-dark-1;
+    }
+
+    &:last-child {
+      padding-right: 0;
     }
   }
 

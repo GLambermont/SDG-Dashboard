@@ -1,20 +1,22 @@
 <template>
   <div class="sensor-select">
-    <NodeListItemList />
+    <div class="content-width-s">
+      <ListItem name="grasso_node0" :info="{ locatie: 'IoT Stadslab' }" />
+    </div>
   </div>
 </template>
 
 <script>
 import NodeList from '@/components/NodeList.vue'
 import SensorList from '@/components/SensorList.vue'
-import NodeListItemList from '@/components/NodeListItemList.vue'
+import ListItem from '@/components/ListItem.vue'
 
 export default {
   name: 'SensorSelect',
   components: {
     NodeList,
     SensorList,
-    NodeListItemList
+    ListItem
   }
 }
 </script>

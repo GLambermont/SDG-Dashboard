@@ -2,7 +2,6 @@
 <li 
   class="floating-list-item" 
   :class="{ 'is-active': isActive }"
-  @click="isActive = !isActive" 
 >
   <div class="info">
     <span class="info-part name">{{ name }}</span>
@@ -20,12 +19,8 @@
 <script>
 export default {
   name: 'FloatingListItem',
-  data: function() {
-    return {
-      isActive: false
-    }
-  },
   props: {
+    isActive: { default: false, type: Boolean },
     name: { default: '', type: String },
     info: { default: {}, type: Object }
   }

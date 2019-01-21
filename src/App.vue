@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import 'normalize.css'
 import PageHeader from '@/components/PageHeader.vue'
 export default {
   name: 'App',

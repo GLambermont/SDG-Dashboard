@@ -29,11 +29,18 @@ export default {
     box-sizing: inherit;
   }
 
+  html,
+  body {
+    min-height: 100%;
+  }
+
   body {
     color: $sdg-c-copy-dark;
     font-family: $sdg-font-stack-copy;
     font-size: 16px;
     line-height: 1.5;
+    background: bottom left no-repeat url('images/backgrounds/bg-shape_left.svg'),
+                top right no-repeat url('images/backgrounds/bg-shape_right.svg'),;
   }
 
   // Typography

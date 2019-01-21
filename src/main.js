@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import ds from './datasharing-plugin.js'
+import ds from './library/datasharing-plugin.js'
 
 let dsObservables = []
 Vue.prototype.$hostname = 'http://iotstadslab.herokuapp.com'

@@ -22,7 +22,7 @@ export default {
   props: {
     isActive: { default: false, type: Boolean },
     name: { default: '', type: String },
-    info: { default: {}, type: Object }
+    info: { default() { return {}; }, type: Object }
   }
 };
 </script>

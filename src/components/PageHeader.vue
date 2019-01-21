@@ -4,7 +4,7 @@
 
     <nav class="main-nav">
       <router-link to='/'>Home</router-link>
-      <router-link to='/sensor-select'>Dashboard</router-link>
+      <router-link to='/dashboard/sensor-select'>Dashboard</router-link>
     </nav>
   </div>
 </template>

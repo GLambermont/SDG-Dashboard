@@ -6,7 +6,13 @@
 
 <script>
 export default {
-  name: 'CTAButton'
+  name: 'CTAButton',
+  mounted () {
+    this.$el.addEventListener('click', () => {
+      
+    });
+  }
+  
 }
 </script>
 

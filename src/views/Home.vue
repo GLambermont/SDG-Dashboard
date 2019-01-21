@@ -23,7 +23,9 @@
 
 <script>
 // @ is an alias to /src
-import TextInput from '@/components/TextInput.vue';
+import TextInput from '@/components/TextInput.vue'
+import router from '../router'
+import 'normalize.css'
 import CTAButton from '@/components/CTAButton.vue';
 
 export default {

@@ -1,39 +1,31 @@
 <template>
   <div class="dashboard">
-    <div class="page-section">
-      <div class="content-width">
-        <div class="h1">
-          Node- en sensorselectie
-        </div> <br />
-        <div class="h2">
-          Selecteer een sensor om te starten.
-        </div> <br />
-        <div class="h3">
-          Nodes
-        </div>
-        <node-list-component />
+    <div class="content-width-l">
+      <div class="title-group">
+        <h1>Node- en sensor selectie</h1>
+        <h2>Selecteer een sensor om te starten</h2>
       </div>
-    </div>
-    <div class="page-section">
-      <div class="content-width">
-        <div class="h3">
-          Sensors
-        </div>
-        <sensor-list-component />
+
+      <div class="list-section">
+        <NodeList />
+      </div>
+      
+      <div class="list-section">
+        <SensorList />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import NodeListComponent from '@/components/NodeList.vue'
-import SensorListComponent from '@/components/SensorList.vue'
+import NodeList from '@/components/NodeList.vue'
+import SensorList from '@/components/SensorList.vue'
 
 export default {
   name: 'Dashboard',
   components: {
-    NodeListComponent,
-    SensorListComponent
+    NodeList,
+    SensorList
   }
 }
 </script>

@@ -7,7 +7,7 @@
 
     <!-- Single line input -->
     <div class="input-container">
-      <SearchIcon v-if="type === 'search'" />
+      <SearchIcon class="icon" v-if="type === 'search'" />
 
       <component 
         :is="type === 'textarea' ? 'textarea' : 'input'" 
@@ -140,13 +140,6 @@ label {
   border: 1px solid $sdg-c-divider-dark-2;
   border-radius: 4px;
   transition: box-shadow 0.125s ease;
-
-  .feather {
-    @include pos-center('y');
-    left: 12px;
-    width: 24px;
-    height: 24px;
-  }
 }
 
 input, textarea {
@@ -174,6 +167,13 @@ input, textarea {
   margin: 12px 0 0 0;
 }
 
+.icon {
+  @include pos-center('y');
+  left: 12px;
+  width: 24px;
+  height: 24px;
+}
+
 // State modifiers
 .is-disabled {
   pointer-events: none;
@@ -196,10 +196,10 @@ input, textarea {
 
   .input-container {
     box-shadow: 0 0 0 2px $sdg-c-deep-purple-50;
-  
-    .feather {
-      stroke: $sdg-c-deep-purple-50;
-    }
+  }
+
+  .icon {
+    stroke: $sdg-c-deep-purple-50;
   }
 }
 

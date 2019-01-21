@@ -5,16 +5,21 @@
     class="button"
   >
     <slot></slot>
-    <i data-feather="arrow-right-circle" class="icon" v-if="to"></i>
+    <ArrowRightCircleIcon class="icon" v-if="to"></ArrowRightCircleIcon>
   </component>
 </template>
 
 <script>
+import { ArrowRightCircleIcon } from 'vue-feather-icons'
+
 export default {
   name: 'CTAButton',
   props: {
     to: { default: null, type: String },
     disabled: { default: false, type: Boolean }
+  },
+  components: {
+    ArrowRightCircleIcon
   }
 }
 </script>

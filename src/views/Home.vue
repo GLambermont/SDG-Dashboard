@@ -19,7 +19,6 @@
         <template slot="label">Herhaal wachtwoord</template>
       </text-input>
 
-
       <text-input type="search"></text-input>
     </div>
   </div>

@@ -1,34 +1,40 @@
 <template>
-  <fieldset class="text-input" :class="baseClasses">
+  <fieldset class="text-input" :class="baseClasses" :data-type="type">
     <label :for="`${id}-input`" v-if="$slots.label">
-      <slot class="test" name="label" />
+      <slot class="label-text" name="label" />
       <span class="tag" v-if="tag != null">{{ tagText }}</span>
     </label>
 
     <!-- Single line input -->
-    <input :id="`${id}-input`"
-      v-if="type != 'textarea'"
-      :type="convertedInputType"
-      :style="inputStyles"
-      :required="required"
-      :pattern="pattern"
-      :disabled="disabled"
-      @focus="isActive = true"
-      @blur="isActive = false"
-      @change="validate"
-    >
+    <div class="input-container">
+      <i class="icon search" data-feather="search" v-if="type === 'search'"></i>
 
-    <!-- Multi line input -->
-    <textarea :id="`${id}-input`"
-      v-if="type === 'textarea'"
-      name=""
-      cols="30"
-      rows="10"
-      :style="inputStyles"
-      :disabled="disabled"
-      @focus="isActive = true"
-      @blur="isActive = false"
-    ></textarea>
+      <input :id="`${id}-input`"
+        v-if="type != 'textarea'"
+        v-model="value"
+        :type="convertedInputType"
+        :style="inputStyles"
+        :required="required"
+        :pattern="pattern"
+        :disabled="disabled"
+        @focus="isActive = true"
+        @blur="isActive = false"
+        @change="validate"
+      >
+
+      <!-- Multi line input -->
+      <textarea :id="`${id}-input`"
+        v-if="type === 'textarea'"
+        v-model="value"
+        name=""
+        cols="30"
+        rows="10"
+        :style="inputStyles"
+        :disabled="disabled"
+        @focus="isActive = true"
+        @blur="isActive = false"
+      ></textarea>
+    </div>
 
     <p class="caption" v-if="$slots.caption"><slot name="caption"/></p>
     <p class="caption" v-if="$slots['error-caption'] && isInvalid"><slot name="error-caption"/></p>
@@ -44,7 +50,8 @@ export default {
       isActive: false,
       isValid: false,
       isInvalid: false,
-      supportedTypes: ['date', 'datetime-local', 'email', 'month', 'number', 'password', 'range', 'search', 'tel', 'text', 'time', 'url', 'week']
+      supportedTypes: ['date', 'datetime-local', 'email', 'month', 'number', 'password', 'range', 'search', 'tel', 'text', 'time', 'url', 'week'],
+      value: ''
     }
   },
   mounted() {
@@ -130,13 +137,19 @@ label {
   }
 }
 
-input,
-textarea {
+.input-container {
+  position: relative;
   width: 100%;
-  padding: 12px;
   border: 1px solid $sdg-c-divider-dark-2;
   border-radius: 4px;
   transition: box-shadow 0.125s ease;
+}
+
+input, textarea {
+  padding: 12px;
+  width: 100%;
+  border: none;
+  background: none;
 
   &:focus {
     outline: none;
@@ -145,15 +158,21 @@ textarea {
   &::placeholder {
     color: rgba(#000, 0.4);
   }
+
+  [data-type="search"] & {
+    padding-left: 48px;
+  }
 }
 
 .caption {
   margin: 12px 0 0 0;
 }
 
-// Input types
-input[type='search'] {
-  // TO DO
+.icon {
+  @include pos-center('y');
+  left: 12px;
+  width: 24px;
+  height: 24px;
 }
 
 // State modifiers
@@ -165,8 +184,7 @@ input[type='search'] {
     color: rgba(#000, 0.4);
   }
 
-  input,
-  textarea {
+  .input-container {
     border-color: rgba(#000, 0.18);
   }
 }
@@ -176,9 +194,12 @@ input[type='search'] {
     color: $sdg-c-deep-purple-50;
   }
 
-  input,
-  textarea {
+  .input-container {
     box-shadow: 0 0 0 2px $sdg-c-deep-purple-50;
+  }
+
+  .icon {
+    stroke: $sdg-c-deep-purple-50;
   }
 }
 
@@ -188,8 +209,7 @@ input[type='search'] {
     color: $sdg-c-success-green;
   }
 
-  input,
-  textarea {
+  .input-container {
     box-shadow: 0 0 0 2px $sdg-c-success-green;
   }
 }
@@ -200,8 +220,7 @@ input[type='search'] {
     color: $sdg-c-error-red;
   }
 
-  input,
-  textarea {
+  .input-container {
     box-shadow: 0 0 0 2px $sdg-c-error-red;
   }
 }

@@ -22,6 +22,7 @@ export default {
   },
   methods: { 
     click: function (item) {
+      console.log(this.item)
       router.push({ name: 'Detail', params: {
         node: this.node,
         sensor: this.item

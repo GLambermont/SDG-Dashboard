@@ -1,17 +1,22 @@
 <template>
   <div class="item-list">
-      <ul v-for="item in list" :key="item">
-          <li @click="update(item)">{{ item }} | <span class="right" data-feather="star"></span> <span class="right" data-feather="trash-2"></span></li>
-      </ul>
+    <ul v-for="item in list" :key="item">
+      <ListItem @click.native="update(item)" :name="item"></ListItem>
+
+        <!-- <li @click="update(item)">{{ item }} | <span class="right" data-feather="star"></span> <span class="right" data-feather="trash-2"></span></li> -->
+    </ul>
   </div>
 </template>
 
 <script>
-const axios = require('axios')
+import axios from 'axios';
+import ListItem from "@/components/ListItem";
 
 export default {
   name: 'NodeListComponent',
-  props: {},
+  components: {
+    ListItem
+  },
   data: () => {
     return {
       list: []
@@ -31,11 +36,5 @@ export default {
         console.log(err)
       })
   }
-}
+};
 </script>
-
-<style lang="scss" scoped>
-.right {
-  align-content: right;
-}
-</style>

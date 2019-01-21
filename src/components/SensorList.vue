@@ -9,6 +9,7 @@
 <script>
 const axios = require('axios')
 const nodes = require('../library/nodes')
+import router from '../router'
 
 export default {
   name: 'SensorListComponent',

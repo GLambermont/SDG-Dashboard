@@ -18,7 +18,6 @@ export default {
 </script>
 
 <style lang="scss">
-  // Google Fonts
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
 
   // Base styling
@@ -71,7 +70,6 @@ export default {
     font-weight: 400;
     line-height: 1.5;
   }
-
   h6, .h6 {
     font-size: $sdg-font-size-h6;
     font-weight: 600;

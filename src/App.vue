@@ -1,23 +1,18 @@
 
 <template>
   <div id="app">
-    <page-header></page-header>
+    <PageHeader></PageHeader>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import 'normalize.css';
-import feather from 'feather-icons';
 import PageHeader from '@/components/PageHeader.vue';
 
 export default {
   name: 'App',
   components: {
-    PageHeader
-  },
-  mounted() {
-    feather.replace();
+    PageHeader,
   }
 };
 </script>

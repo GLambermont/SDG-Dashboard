@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div>    
     <main>
       <div class="content-section">
         <div class="content-width-s">
@@ -8,7 +8,7 @@
             <h2>Immediate insight in your data</h2>
           </div>
           <p>Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver.</p>
-          <CTAButton>Starten</CTAButton>
+          <CTAButton to="/test" disabled>Starten</CTAButton>
         </div>
       </div>
       <div class="content-section bottom text-light">
@@ -22,8 +22,8 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import TextInput from '@/components/TextInput.vue';
+import 'normalize.css'
+import TextInput from '@/components/TextInput.vue'
 import CTAButton from '@/components/CTAButton.vue';
 
 export default {

@@ -19,7 +19,13 @@ export default {
 .page-header {
   display: flex;
   align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
   padding: 0 24px;
+  background: $sdg-c-white;
   border-bottom: 1px solid $sdg-c-divider-dark-1;
 }
 
@@ -40,7 +46,7 @@ export default {
   a {
     display: inline-block;
     position: relative;
-    padding: 16px;
+    margin-left: 16px;
     color: $sdg-c-copy-dark;
     text-decoration: none;
 
@@ -54,7 +60,7 @@ export default {
     }
   }
 
-  .router-link-active {
+  .router-link-exact-active {
     color: $sdg-c-deep-purple-50;
     font-weight: 600;
   }

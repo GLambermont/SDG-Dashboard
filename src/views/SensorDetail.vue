@@ -9,8 +9,8 @@
     <div class="general-info">
       <InfoCard class="card" title="ID" :value="sensor" />
       <InfoCard class="card" title="Actief" value="Ja" />
-      <InfoCard class="card" title="Sensor tijd" />
-      <InfoCard class="card" title="Laatste waarde" />
+      <InfoCard class="card" title="Sensor tijd" :value="last.sensor_time" />
+      <InfoCard class="card" title="Laatste waarde" :value="last.sensor_data" />
     </div>
     <div class="sensordata">
       <div class="raw">
@@ -41,12 +41,10 @@ export default {
       node: null,
       sensor: null,
       raw_data: [],
+      last: {}
     }
   },
   methods: {
-    getLastItem : function () {
-      return this.raw_data
-    }
   },
   mounted () {
     this.node = this.$route.query.node
@@ -55,8 +53,18 @@ export default {
       this.raw_data = resp.data
       new Chart(this.$el.querySelector('#myChart').getContext("2d"), {
         type: 'line',
-        data: nodes.prepareData(this.raw_data)
+        data: nodes.prepareData(this.raw_data, 200),
+        options: {
+          animation: {
+            duration: 0, // general animation time
+          },
+          hover: {
+            animationDuration: 0, // duration of animations when hovering an item
+          },
+          responsiveAnimationDuration: 0, // animation duration after a resize
+        }
       })
+      this.last = resp.data[resp.data.length - 1];
     })
   }
 }

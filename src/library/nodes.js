@@ -9,15 +9,18 @@ const getUniqueNodes = (nodeData) => {
     return data
 }
 
-const prepareData = (nodeData) => {
+const prepareData = (nodeData, max = 12000) => {
     let data = {labels: [], datasets: [{
         label: "Sensor Waarde",
         data: []
     }]}
-    let i = 0
-    for (i = 0; i < nodeData.length; i++) {
-        data.labels.push(nodeData[i].sensor_time)
-        data.datasets[0].data.push(nodeData[i].sensor_data);
+    data.datasets[0].backgroundColor = "rgba(190, 144, 212, .5)" 
+    for (let i = 0; i < nodeData.length; i++) {
+        if(max > 0) {
+            max--
+            data.labels.push(nodeData[i].sensor_time)
+            data.datasets[0].data.push(nodeData[i].sensor_data)
+        }
     }
     return data
 }

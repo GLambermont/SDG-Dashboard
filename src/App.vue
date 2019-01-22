@@ -2,7 +2,7 @@
 <template>
   <div id="app">
     <PageHeader></PageHeader>
-    <router-view></router-view>
+    <router-view class="router-view"></router-view>
   </div>
 </template>
 
@@ -30,8 +30,18 @@ export default {
   }
 
   html,
-  body {
-    min-height: 100%;
+  body,
+  #app {
+    min-height: 100vh;
+  }
+
+  #app {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .router-view {
+    overflow: auto;
   }
 
   body {
@@ -39,8 +49,8 @@ export default {
     font-family: $sdg-font-stack-copy;
     font-size: 16px;
     line-height: 1.5;
-    background: bottom left no-repeat url('images/backgrounds/bg-shape_left.svg'),
-                top right no-repeat url('images/backgrounds/bg-shape_right.svg'),;
+    background: top right no-repeat url('images/backgrounds/bg-shape_right.svg'),
+                bottom left no-repeat url('images/backgrounds/bg-shape_left.svg');
   }
 
   // Typography

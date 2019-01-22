@@ -20,7 +20,7 @@ export default new Router({
       component: Dashboard
     },
     {
-      path: '/detail',
+      path: '/dashboard/sensor-info',
       name: 'Detail',
       component: Detail
     },

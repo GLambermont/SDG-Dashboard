@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "chart.js": "^2.7.3",
     "normalize.css": "^8.0.1",
     "rxjs": "^6.3.3",
     "vue": "^2.5.21",

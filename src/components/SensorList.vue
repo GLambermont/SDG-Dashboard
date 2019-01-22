@@ -1,6 +1,6 @@
 <template>
   <div class="item-list">
-      <ul v-for="item in list" :key="item._id">
+      <ul v-for="item in list" :key="item">
         <li @click="click(item)">Sensor{{ item }}</li>
       </ul>
   </div>
@@ -22,10 +22,9 @@ export default {
   },
   methods: { 
     click: function (item) {
-      console.log(this.item)
-      router.push({ name: 'Detail', params: {
+      router.push({ name: 'Detail', query: {
         node: this.node,
-        sensor: this.item
+        sensor: item
       }})
     }
   },

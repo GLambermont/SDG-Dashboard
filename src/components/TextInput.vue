@@ -119,7 +119,7 @@ export default {
   border: none;
   margin: 16px 0;
   padding: 0;
-  max-width: 400px;
+  width: 400px;
 }
 
 label {

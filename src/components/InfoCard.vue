@@ -1,5 +1,5 @@
 <template>
-<div class="info-card">
+<div class="info-card" :style="{ backgroundColor: fill }">
   <h6>{{ title }}</h6>
   <p>{{ value }}</p>
 </div>
@@ -10,7 +10,8 @@ export default {
   name: "InfoCard",
   props: {
     title: { default: null, type: String },
-    value: { value: null, type: [String, Number] }
+    value: { default: null, type: [String, Number] },
+    fill: { default: null, type: String }
   }
 };
 </script>
@@ -22,6 +23,7 @@ export default {
   border-radius: 8px;
   border: 1px solid $sdg-c-divider-dark-1;
   overflow: hidden;
+  background: $sdg-c-white;
 }
 
 h6,

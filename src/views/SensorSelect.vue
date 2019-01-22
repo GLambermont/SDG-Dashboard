@@ -13,7 +13,9 @@
             <TextInput class="search-bar" type="search" placeholder="Zoeken" fill="#fff" />
           </header>
 
-          <NodeList class="list"/>
+          <ul class="list nodes" v-for="node in nodeList" :key="node">
+            <ListItem class="list-item" @click.native="() => getSensorList(node)" :name="node"></ListItem>
+          </ul>
         </div>
         
         <div class="page-section">
@@ -22,7 +24,16 @@
             <TextInput class="search-bar" type="search" placeholder="Zoeken" fill="#fff" />
           </header>
 
-          <SensorList class="list"/>
+          <ul class="list sensors" v-for="sensor in sensorList" :key="sensor._id">
+            <ListItem class="list-item" 
+              :name="sensor.sensor_name" 
+              :info="{ 
+                ID: sensor.sensor_id,
+                time: sensor.sensor_time,
+                data: sensor.sensor_data
+              }">
+            </ListItem>
+          </ul>
         </div>
       </main>
     </div>
@@ -30,16 +41,62 @@
 </template>
 
 <script>
-import TextInput from '@/components/TextInput.vue';
-import NodeList from '@/components/NodeList.vue';
-import SensorList from '@/components/SensorList.vue';
+import axios from 'axios';
+import TextInput from '@/components/TextInput';
+import ListItem from "@/components/ListItem";
 
 export default {
   name: 'SensorSelect',
   components: {
     TextInput,
-    NodeList,
-    SensorList
+    ListItem
+  },
+  data: function() {
+    return {
+      nodeList: [],
+      sensorList: []
+    }
+  },
+  methods: {
+    // Get data from the SDG API
+    getAPIData(url) {            
+      return axios.get(url).then(resp => resp.data); 
+    },
+
+
+    getUniqueSensorData(nodeData, count) {
+      let data = [];
+
+      for(let i = 0; i < count; i++) {                
+        if (!data.includes(nodeData[i])) {
+          data.push(nodeData[i]);
+        }
+      }
+
+      return data;
+    },
+
+    // Get an array containing all nodes
+    async getNodeList() {
+      try {
+        this.nodeList = await this.getAPIData(`${this.$hostname}/v0/sensors`);
+      } catch(err) {
+        console.error(err);
+      }
+    },
+
+    // Get an array containing all sensors connected to a node
+    async getSensorList(node) {     
+      try {
+        const nodeData = await this.getAPIData(`${this.$hostname}/v0/sensors/${node}`);
+        this.sensorList = this.getUniqueSensorData(nodeData, 12);        
+      } catch(err) {
+        console.error(err);
+      }
+    }
+  },
+  mounted() {
+    this.getNodeList();
   }
 };
 </script>
@@ -67,6 +124,10 @@ export default {
   background: $sdg-c-gray-10;
   border-radius: 8px;
 
+  h3 {
+    margin-top: 0;
+  }
+
   .search-bar {
     display: block;
     width: 100%;
@@ -74,6 +135,11 @@ export default {
 }
 
 .list {
+  padding: 0;
   margin: 0 24px;
+}
+
+.list-item {
+  margin-bottom: 16px;
 }
 </style>

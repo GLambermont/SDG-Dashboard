@@ -6,23 +6,11 @@
       <h2>Node: {{ node }}</h2>
     </div>
     <h3>Algemene Informatie</h3>
-    <div class="generalinfo">
-      <div class="box">
-        <span class="title">ID</span> 
-        <span class="value">{{ sensor }}</span>        
-      </div>
-      <div class="box">
-        <span class="title">Actief</span> 
-        <span class="value">Ja</span>        
-      </div>
-      <div class="box">
-        <span class="title">Sensor Tijd</span> 
-        <span class="value"></span>
-      </div>
-      <div class="box">
-        <span class="title">Laatste Waarden</span> 
-        <span class="value"></span>
-      </div>
+    <div class="general-info">
+      <InfoCard class="card" title="ID" :value="sensor" />
+      <InfoCard class="card" title="Actief" value="Ja" />
+      <InfoCard class="card" title="Sensor tijd" />
+      <InfoCard class="card" title="Laatste waarde" />
     </div>
     <div class="sensordata">
       <div class="raw">
@@ -41,10 +29,12 @@
 const axios = require('axios')
 const chart = require('chart.js')
 const nodes = require('../library/nodes')
+import InfoCard from "@/components/InfoCard";
 
 export default {
   name: 'Detail',
   components: {
+    InfoCard
   },
   data: () => {
     return {
@@ -73,5 +63,14 @@ export default {
 </script>
 
 <style lang="scss">
+.general-info {
+  width: 100%;
+  display: flex;
+  margin: 0 -12px;
 
+  .card {
+    flex: 1;
+    margin: 0 12px;
+  }
+}
 </style>

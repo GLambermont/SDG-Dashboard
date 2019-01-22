@@ -5,7 +5,7 @@
         <h1>Node- en sensor selectie</h1>
         <h2>Selecteer een sensor om te starten</h2>
       </div>
-      
+
       <main class="page-section-container">
         <div class="page-section">
           <header class="list-header">
@@ -13,25 +13,41 @@
             <TextInput class="search-bar" type="search" placeholder="Zoeken" fill="#fff" />
           </header>
 
-          <ul class="list nodes" v-for="node in nodeList" :key="node">
-            <ListItem class="list-item" @click.native="() => getSensorList(node)" :name="node"></ListItem>
+          <ul class="list nodes">
+            <ListItem
+              class="list-item"
+              v-for="(node, index) in nodeList"
+              :key="node"
+              :isActive="activeNodeIndex === index"
+              :name="node"
+              @click.native="selectNode(node, index)"
+            >
+              <StarIcon class="action-icon" />
+              <Trash2Icon class="action-icon destructive" />
+            </ListItem>
           </ul>
         </div>
-        
+
         <div class="page-section">
           <header class="list-header">
             <h3>Sensors</h3>
             <TextInput class="search-bar" type="search" placeholder="Zoeken" fill="#fff" />
           </header>
 
-          <ul class="list sensors" v-for="sensor in sensorList" :key="sensor._id">
-            <ListItem class="list-item" 
-              :name="sensor.sensor_name" 
-              :info="{ 
+          <ul class="list sensors">
+            <ListItem class="list-item"
+              v-for="sensor in sensorList"
+              scrollingInfo
+              :key="sensor._id"
+              :name="sensor.sensor_name"
+              :info="{
                 ID: sensor.sensor_id,
                 time: sensor.sensor_time,
                 data: sensor.sensor_data
-              }">
+              }"
+              @click.native="$router.push({ path: 'dashboard/sensor-info', query: { sensorID: sensor._id } })"
+            >
+              <ArrowRightCircleIcon class="action-icon" />
             </ListItem>
           </ul>
         </div>
@@ -43,31 +59,35 @@
 <script>
 import axios from 'axios';
 import TextInput from '@/components/TextInput';
-import ListItem from "@/components/ListItem";
+import ListItem from '@/components/ListItem';
+import { StarIcon, Trash2Icon, ArrowRightCircleIcon } from 'vue-feather-icons';
 
 export default {
   name: 'SensorSelect',
   components: {
     TextInput,
-    ListItem
+    ListItem,
+    StarIcon,
+    Trash2Icon,
+    ArrowRightCircleIcon
   },
   data: function() {
     return {
       nodeList: [],
-      sensorList: []
+      sensorList: [],
+      activeNodeIndex: null
     }
   },
   methods: {
     // Get data from the SDG API
-    getAPIData(url) {            
-      return axios.get(url).then(resp => resp.data); 
+    getAPIData(url) {
+      return axios.get(url).then(resp => resp.data);
     },
-
 
     getUniqueSensorData(nodeData, count) {
       let data = [];
 
-      for(let i = 0; i < count; i++) {                
+      for(let i = 0; i < count; i++) {
         if (!data.includes(nodeData[i])) {
           data.push(nodeData[i]);
         }
@@ -86,13 +106,19 @@ export default {
     },
 
     // Get an array containing all sensors connected to a node
-    async getSensorList(node) {     
+    async getSensorList(node) {
       try {
         const nodeData = await this.getAPIData(`${this.$hostname}/v0/sensors/${node}`);
-        this.sensorList = this.getUniqueSensorData(nodeData, 12);        
+        this.sensorList = this.getUniqueSensorData(nodeData, 12);
       } catch(err) {
         console.error(err);
       }
+    },
+
+    // Show the active state of node and show sensors for the node
+    selectNode(node, index) {
+      this.activeNodeIndex = index; // Save the index of the clicked node
+      this.getSensorList(node);
     }
   },
   mounted() {
@@ -101,7 +127,7 @@ export default {
 };
 </script>
 
-<style lang="scss">  
+<style lang="scss">
 .sensor-select {
   overflow: auto;
 }
@@ -120,7 +146,7 @@ export default {
 .list-header {
   margin-bottom: -40px;
   padding: 24px;
-  padding-bottom: 80px;
+  padding-bottom: 48px;
   background: $sdg-c-gray-10;
   border-radius: 8px;
 
@@ -135,11 +161,24 @@ export default {
 }
 
 .list {
-  padding: 0;
-  margin: 0 24px;
+  margin: 0;
+  padding: 0 24px;
+  padding-top: 2px;
+  max-height: 40vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .list-item {
   margin-bottom: 16px;
+}
+
+// List item action icons
+.action-icon {
+  margin-left: 16px;
+
+  &.destructive {
+    color: $sdg-c-error-red;
+  }
 }
 </style>

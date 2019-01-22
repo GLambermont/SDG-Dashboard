@@ -17,7 +17,7 @@
         <h3>Sensor Data</h3>
 
       </div>
-      <div class="table" style="position: relative; height:40vh; width:80vw">
+      <div class="table">
         <canvas id="myChart" width="400" height="400"></canvas>
       </div>
       </div>
@@ -53,8 +53,9 @@ export default {
       this.raw_data = resp.data
       new Chart(this.$el.querySelector('#myChart').getContext("2d"), {
         type: 'line',
-        data: nodes.prepareData(this.raw_data, 200),
+        data: nodes.prepareData(this.raw_data, 250),
         options: {
+          maintainAspectRatio: false,
           animation: {
             duration: 0, // general animation time
           },

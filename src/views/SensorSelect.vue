@@ -1,5 +1,5 @@
 <template>
-  <div class="sensor-select">
+  <div class="sensor-select-view">
     <div class="content-width-l content-section">
       <div class="title-group bottom-spacing">
         <h1>Node- en sensor selectie</h1>
@@ -45,7 +45,7 @@
                 time: sensor.sensor_time,
                 data: sensor.sensor_data
               }"
-              @click.native="$router.push({ path: '/dashboard/sensor-info', query: { node: nodeList[activeNodeIndex], sensor: sensor.sensor_id  } })"
+              @click.native="$router.push({ name: 'sensorDetail', params: { node: nodeList[activeNodeIndex], sensor: sensor.sensor_id  } })"
             >
               <ArrowRightCircleIcon class="action-icon" />
             </ListItem>

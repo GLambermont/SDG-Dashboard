@@ -3,8 +3,8 @@
     <router-link to='/' class="logo"><img src="../images/logos/logo_sdg-dashboard.svg" alt="Smart Data Grid"></router-link>
 
     <nav class="main-nav">
-      <router-link to='/'>Home</router-link>
-      <router-link to='/dashboard/sensor-select'>Dashboard</router-link>
+      <router-link :to="{ name: 'home' }">Home</router-link>
+      <router-link :to="{ name: 'sensorSelect' }">Dashboard</router-link>
     </nav>
   </div>
 </template>

@@ -15,7 +15,7 @@ import { ArrowRightCircleIcon } from 'vue-feather-icons'
 export default {
   name: 'CTAButton',
   props: {
-    to: { default: null, type: String },
+    to: { default: null, type: [String, Object] },
     disabled: { default: false, type: Boolean }
   },
   components: {

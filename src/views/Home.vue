@@ -36,11 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .content-section {
-    padding: 120px 0px;
-
-    &.bottom {
-      background-color: $sdg-c-deep-purple-50;
-    }
+  .content-section.bottom {
+    background-color: $sdg-c-deep-purple-50;
   }
 </style>

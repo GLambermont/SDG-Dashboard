@@ -1,6 +1,6 @@
 <template>
   <div class="sensor-select">
-    <div class="content-width-l">
+    <div class="content-width-l content-section">
       <div class="title-group bottom-spacing">
         <h1>Node- en sensor selectie</h1>
         <h2>Selecteer een sensor om te starten</h2>

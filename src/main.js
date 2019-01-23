@@ -6,7 +6,7 @@ import ds from './library/datasharing-plugin.js'
 
 let dsObservables = [];
 
-Vue.prototype.$hostname = 'http://iotstadslab.herokuapp.com';
+Vue.prototype.$hostname = 'localhost:3001';
 Vue.config.productionTip = false;
 
 Vue.use(ds, {

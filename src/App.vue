@@ -130,14 +130,30 @@ export default {
   .content-width-l {
     margin: 0 auto;
 
-    @include media('<tablet') { padding: 0 $sdg-content-padding-s; }
-    @include media('>=tablet') { padding: 0 $sdg-content-padding-m; }
-    @include media('>=laptop') { padding: 0 $sdg-content-padding-l; }
+    @include media('<tablet') { 
+      padding-left: $sdg-content-padding-s; 
+      padding-right: $sdg-content-padding-s; 
+    }
+
+    @include media('>=tablet') { 
+      padding-left: $sdg-content-padding-m; 
+      padding-right: $sdg-content-padding-m; 
+    }
+
+    @include media('>=laptop') { 
+      padding-left: $sdg-content-padding-l; 
+      padding-right: $sdg-content-padding-l; 
+    }
   }
 
   .content-width-s { max-width: $sdg-content-width-s; }
   .content-width-m { max-width: $sdg-content-width-m; }
   .content-width-l { max-width: $sdg-content-width-l; }
+
+  .content-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
 
   .text-dark {
     color: $sdg-c-copy-dark;

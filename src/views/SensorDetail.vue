@@ -19,6 +19,7 @@
       </div>
       <div class="table">
         <canvas id="myChart" width="400" height="400"></canvas>
+        <div class="right"><CTAButton to="/dashboard/sensor-data">Onbewerkte Data</CTAButton></div>
       </div>
       </div>
     </div>
@@ -29,12 +30,14 @@
 const axios = require('axios')
 const chart = require('chart.js')
 const nodes = require('../library/nodes')
+import CTAButton from '@/components/CTAButton.vue'
 import InfoCard from "@/components/InfoCard";
 
 export default {
   name: 'Detail',
   components: {
-    InfoCard
+    InfoCard,
+    CTAButton
   },
   data: () => {
     return {

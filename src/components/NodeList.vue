@@ -22,7 +22,10 @@ export default {
   },
   methods: {
     update: function (item) {
-      this.$dsPushUpdate('node', item)
+      router.push({ name: '/dashboard/sensor-info', query: {
+        node: this.node,
+        sensor: item
+      }})
     }
   },
   mounted () {

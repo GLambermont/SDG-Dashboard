@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Dashboard from './views/SensorSelect.vue'
+import Detail from './views/SensorDetail.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -14,7 +17,12 @@ export default new Router({
     {
       path: '/dashboard/sensor-select',
       name: 'Dashboard',
-      component: () => import(/* webpackChunkName: "sensor-select" */ './views/SensorSelect.vue')
-    }
+      component: Dashboard
+    },
+    {
+      path: '/dashboard/sensor-info',
+      name: 'Detail',
+      component: Detail
+    },
   ]
 })

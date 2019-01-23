@@ -45,7 +45,7 @@
                 time: sensor.sensor_time,
                 data: sensor.sensor_data
               }"
-              @click.native="$router.push({ path: 'dashboard/sensor-info', query: { sensorID: sensor._id } })"
+              @click.native="$router.push({ path: '/dashboard/sensor-info', query: { node: nodeList[activeNodeIndex], sensor: sensor.sensor_id  } })"
             >
               <ArrowRightCircleIcon class="action-icon" />
             </ListItem>

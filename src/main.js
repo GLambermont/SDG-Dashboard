@@ -1,11 +1,19 @@
+import 'normalize.css';
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import 'normalize.css'
+import ds from './library/datasharing-plugin.js'
 
-Vue.config.productionTip = false
+let dsObservables = [];
+
+Vue.prototype.$hostname = 'http://iotstadslab.herokuapp.com';
+Vue.config.productionTip = false;
+
+Vue.use(ds, {
+  list: dsObservables
+});
 
 new Vue({
   router,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

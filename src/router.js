@@ -5,6 +5,7 @@ import Home from './views/Home.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -12,12 +13,19 @@ export default new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/dashboard/sensor-select', 
+      name: 'sensorSelect',
+      component: () => import(/* webpackChunkName: "sensor-select" */ './views/SensorSelect.vue'),
+    },
+    {
+      path: '/dashboard/sensor-detail', 
+      name: 'sensorDetail',
+      component: () => import(/* webpackChunkName: "sensor-detail" */ './views/SensorDetail.vue'),
+    },
+    {
+      path: '/dashboard/sensor-data-raw', 
+      name: 'sensorDataRaw',
+      component: () => import(/* webpackChunkName: "sensor-data-raw" */ './views/SensorDataRaw.vue'),
     }
   ]
 })

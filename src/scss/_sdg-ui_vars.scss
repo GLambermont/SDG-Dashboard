@@ -1,0 +1,114 @@
+// Colors
+$sdg-c-gray-100: #333333;
+$sdg-c-sdg-gray-90: #262626;
+$sdg-c-gray-80: #4D4D4D;
+$sdg-c-gray-70: #707070;
+$sdg-c-gray-60: #8F8F8F;
+$sdg-c-gray-50: #ADADAD;
+$sdg-c-gray-40: #CCCCCC;
+$sdg-c-gray-30: #DBDBDB;
+$sdg-c-gray-20: #EBEBEB;
+$sdg-c-gray-10: #F2F2F2;
+
+$sdg-c-pink-100: #401229;
+$sdg-c-pink-90: #610A3B;
+$sdg-c-pink-80: #850552;
+$sdg-c-pink-70: #BD0479;
+$sdg-c-pink-60: #D61195;
+$sdg-c-pink-50: #F235B4;
+$sdg-c-pink-40: #FA78CF;
+$sdg-c-pink-30: #FAA0DC;
+$sdg-c-pink-20: #F2CBE5;
+$sdg-c-pink-10: #FAE1F2;
+
+$sdg-c-purple-100: #3A1240;
+$sdg-c-purple-90: #4D0A61;
+$sdg-c-purple-80: #5F0585;
+$sdg-c-purple-70: #7F04BD;
+$sdg-c-purple-60: #911AD6;
+$sdg-c-purple-50: #AE3AF2;
+$sdg-c-purple-40: #CA78FA;
+$sdg-c-purple-30: #D9A0FA;
+$sdg-c-purple-20: #E4CBF2;
+$sdg-c-purple-10: #F1E1FA;
+
+$sdg-c-deep-purple-100: #181940;
+$sdg-c-deep-purple-90: #1A1A59;
+$sdg-c-deep-purple-80: #1C1885;
+$sdg-c-deep-purple-70: #332ABD;
+$sdg-c-deep-purple-60: #4E44D6;
+$sdg-c-deep-purple-50: #6157F2;
+$sdg-c-deep-purple-40: #8078FA;
+$sdg-c-deep-purple-30: #B4AFFA;
+$sdg-c-deep-purple-20: #D7D5F2;
+$sdg-c-deep-purple-10: #EBE6FA;
+
+$sdg-c-light-blue-100: #122E33;
+$sdg-c-light-blue-90: #0E4659;
+$sdg-c-light-blue-80: #0A587A;
+$sdg-c-light-blue-70: #0B7EB8;
+$sdg-c-light-blue-60: #1195D6;
+$sdg-c-light-blue-50: #35B4F2;
+$sdg-c-light-blue-40: #78CFFA;
+$sdg-c-light-blue-30: #A0DCFA;
+$sdg-c-light-blue-20: #CDEBFA;
+$sdg-c-light-blue-10: #E1F3FA;
+
+$sdg-c-green-100: #17291D;
+$sdg-c-green-90: #0C4023;
+$sdg-c-green-80: #09753B;
+$sdg-c-green-70: #0BB35C;
+$sdg-c-green-60: #11D171;
+$sdg-c-green-50: #35F294;
+$sdg-c-green-40: #78FAB9;
+$sdg-c-green-30: #A0FACD;
+$sdg-c-green-20: #C8FAE1;
+$sdg-c-green-10: #DCFAEB;
+
+$sdg-c-black: #000000;
+$sdg-c-white: #FFFFFF;
+$sdg-c-error-red: #F23535;
+$sdg-c-success-green: #0BB35C;
+$sdg-c-warning-yellow: #E1A20E;
+
+$sdg-c-heading-dark: #000;
+$sdg-c-copy-dark: rgba(#000, 0.7); 
+
+$sdg-c-heading-light: #FFF;
+$sdg-c-copy-light: rgba(#FFF, 0.8);
+
+$sdg-c-divider-dark-1: rgba(#000, 0.18);
+$sdg-c-divider-dark-2: rgba(#000, 0.4); 
+
+$sdg-c-divider-light-1: rgba(#fff, 0.25);
+$sdg-c-divider-light-2: rgba(#000, 0.5); 
+
+// Typography
+$sdg-font-stack-system: system_ui, _apple_system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans_serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$sdg-font-stack-system-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', 'Droid Sans Mono', 'Source Code Pro', monospace;
+$sdg-font-stack-heading: 'Open Sans', $sdg-font-stack-system;
+$sdg-font-stack-copy: 'Open Sans', $sdg-font-stack-system;
+
+$sdg-font-size-h1: 58px;
+$sdg-font-size-h2: 48px;
+$sdg-font-size-h3: 36px;
+$sdg-font-size-h4: 28px;
+$sdg-font-size-h5: 25px;
+$sdg-font-size-h6: 20px;
+$sdg-font-size-copy: 16px;
+$sdg-font-size-caption: 13px;
+$sdg-font-size-overline: 12px;
+
+// Metrics
+$sdg-content-width-s: 800px;
+$sdg-content-width-m: 1200px;
+$sdg-content-width-l: 1440px;
+
+$sdg-content-padding-s: 16px;
+$sdg-content-padding-m: 24px;
+$sdg-content-padding-l: 40px;
+
+// Shadows
+$sdg-shadow-1: 0 0 4px rgba(#000, 0.08), 0 4px 8px rgba(#000, 0.1);
+$sdg-shadow-2: 0 0 8px rgba(#000, 0.08), 0 10px 18px rgba(#000, 0.1);
+$sdg-shadow-3: 0 0 12px rgba(#000, 0.08), 0 16px 24px rgba(#000, 0.1);

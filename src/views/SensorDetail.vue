@@ -1,6 +1,6 @@
 <template>
   <div class="detail-view">
-    <div class="content-width-l">
+    <div class="content-width-l content-section">
     <div class="title-group bottom-spacing">
       <h1>Sensor: {{ sensor }}</h1>
       <h2>Node: {{ node }}</h2>

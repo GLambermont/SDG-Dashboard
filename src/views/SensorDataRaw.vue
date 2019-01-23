@@ -1,6 +1,6 @@
 <template>
 <div class="sensor-data-view">
-  <div class="content-width-s">
+  <div class="content-width-s content-section">
     <div class="title-group bottom-spacing">
       <h1>Sensor: {{ sensor }}</h1>
       <h2>Node: {{ node }}</h2>

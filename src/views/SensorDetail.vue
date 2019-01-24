@@ -9,8 +9,8 @@
     <div class="general-info">
       <InfoCard class="card" title="ID" :value="sensor" />
       <InfoCard class="card" title="Actief" value="Ja" />
-      <InfoCard class="card" title="Sensor tijd" :value="last.sensor_time" />
-      <InfoCard class="card" title="Laatste waarde" :value="last.sensor_data" />
+      <InfoCard class="card" title="Sensor tijd" :value="last.time" />
+      <InfoCard class="card" title="Laatste waarde" :value="last.data" />
     </div>
     <div class="sensordata">
       <div class="raw">
@@ -50,10 +50,12 @@ export default {
   methods: {
   },
   mounted () {
-    this.node = this.$route.params.node
-    this.sensor = this.$route.params.sensor
-    axios.get(this.$hostname + '/v0/sensors/' + this.$route.params.node + '/' + this.$route.params.sensor).then(resp => {
-      this.raw_data = resp.data
+    this.node = this.$route.params.node;
+    this.sensor = this.$route.params.sensor;
+
+    axios.get(`${this.$hostname}/v0/sensors/${this.$route.params.node}/${this.$route.params.sensor}`).then(resp => {
+      this.raw_data = resp.data[0].sensor_data;
+
       new Chart(this.$el.querySelector('#myChart').getContext("2d"), {
         type: 'line',
         data: prepareData(this.raw_data, 250),
@@ -68,7 +70,8 @@ export default {
           responsiveAnimationDuration: 0, // animation duration after a resize
         }
       })
-      this.last = resp.data[resp.data.length - 1];
+
+      this.last = this.raw_data[this.raw_data.length - 1];
     })
   }
 }

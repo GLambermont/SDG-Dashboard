@@ -28,7 +28,7 @@ export default {
     this.sensor = this.$route.params.sensor;
 
     axios.get(this.$hostname + '/v0/sensors/' + this.$route.params.node + '/' + this.$route.params.sensor).then(resp => {
-      this.data = resp.data
+      this.data = resp.data[0].sensor_data;
     });
   }
 };

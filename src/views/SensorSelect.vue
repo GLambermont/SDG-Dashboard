@@ -43,7 +43,7 @@
               :info="{
                 ID: sensor.sensor_id,
                 time: sensor.sensor_time,
-                data: sensor.sensor_data
+                data: sensor.sensor_data[0].data
               }"
               @click.native="$router.push({ name: 'sensorDetail', params: { node: nodeList[activeNodeIndex], sensor: sensor.sensor_id  } })"
             >
@@ -58,6 +58,7 @@
 
 <script>
 import axios from 'axios';
+import { getUniqueNodes } from '../library/nodes';
 import TextInput from '@/components/TextInput';
 import ListItem from '@/components/ListItem';
 import { StarIcon, Trash2Icon, ArrowRightCircleIcon } from 'vue-feather-icons';
@@ -84,11 +85,11 @@ export default {
       return axios.get(url).then(resp => resp.data);
     },
 
-    getUniqueSensorData(nodeData, count) {
+    getUniqueSensorData(nodeData, count = 12) {
       let data = [];
 
       for(let i = 0; i < count; i++) {
-        if (!data.includes(nodeData[i])) {
+        if (nodeData[i] && !data.includes(nodeData[i])) {
           data.push(nodeData[i]);
         }
       }
@@ -109,7 +110,7 @@ export default {
     async getSensorList(node) {
       try {
         const nodeData = await this.getAPIData(`${this.$hostname}/v0/sensors/${node}`);
-        this.sensorList = this.getUniqueSensorData(nodeData, 12);
+        this.sensorList = this.getUniqueSensorData(nodeData);
       } catch(err) {
         console.error(err);
       }

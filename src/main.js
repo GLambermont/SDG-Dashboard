@@ -6,8 +6,8 @@ import ds from './library/datasharing-plugin.js'
 
 let dsObservables = [];
 
-Vue.prototype.$hostname = 'localhost:3001';
 Vue.config.productionTip = false;
+Vue.prototype.$hostname = 'http://192.168.1.111:3000';
 
 Vue.use(ds, {
   list: dsObservables

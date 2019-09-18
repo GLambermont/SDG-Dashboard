@@ -35,7 +35,8 @@
           </header>
 
           <ul class="list sensors">
-            <ListItem class="list-item"
+            <ListItem
+              class="list-item"
               v-for="sensor in sensorList"
               scrollingInfo
               :key="sensor._id"
@@ -57,14 +58,14 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { getUniqueNodes } from '../library/nodes';
-import TextInput from '@/components/TextInput';
-import ListItem from '@/components/ListItem';
-import { StarIcon, Trash2Icon, ArrowRightCircleIcon } from 'vue-feather-icons';
+import axios from "axios";
+import { getUniqueNodes } from "../library/nodes";
+import TextInput from "@/components/TextInput";
+import ListItem from "@/components/ListItem";
+import { StarIcon, Trash2Icon, ArrowRightCircleIcon } from "vue-feather-icons";
 
 export default {
-  name: 'SensorSelect',
+  name: "SensorSelect",
   components: {
     TextInput,
     ListItem,
@@ -77,7 +78,7 @@ export default {
       nodeList: [],
       sensorList: [],
       activeNodeIndex: null
-    }
+    };
   },
   methods: {
     // Get data from the SDG API
@@ -85,15 +86,19 @@ export default {
       return axios.get(url).then(resp => resp.data);
     },
 
-    getUniqueSensorData(nodeData, count = 12) {
+    getUniqueSensorData(node, nodeData) {
       let data = [];
-
-      for(let i = 0; i < count; i++) {
-        if (nodeData[i] && !data.includes(nodeData[i])) {
-          data.push(nodeData[i]);
-        }
-      }
-
+      nodeData.forEach(async element => {
+        let obj = {};
+        obj._id = element._id;
+        obj.sensor_id = element.sensor_id;
+        obj.sensor_name = element.sensor_name;
+        let getSingularMeasurement = await this.getAPIData(
+          `${this.$hostname}/v0/sensors/${node}/${element.sensor_id}/1`
+        );
+        obj.sensor_data = getSingularMeasurement.sensor_data;
+        data.push(obj);
+      });
       return data;
     },
 
@@ -101,7 +106,7 @@ export default {
     async getNodeList() {
       try {
         this.nodeList = await this.getAPIData(`${this.$hostname}/v0/sensors`);
-      } catch(err) {
+      } catch (err) {
         console.error(err);
       }
     },
@@ -109,9 +114,11 @@ export default {
     // Get an array containing all sensors connected to a node
     async getSensorList(node) {
       try {
-        const nodeData = await this.getAPIData(`${this.$hostname}/v0/sensors/${node}`);
-        this.sensorList = this.getUniqueSensorData(nodeData);
-      } catch(err) {
+        const nodeData = await this.getAPIData(
+          `${this.$hostname}/v0/sensors/${node}`
+        );
+        this.sensorList = this.getUniqueSensorData(node, nodeData);
+      } catch (err) {
         console.error(err);
       }
     },

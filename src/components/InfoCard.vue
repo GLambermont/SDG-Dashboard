@@ -1,8 +1,9 @@
 <template>
-<div class="info-card" :style="{ backgroundColor: fill }">
-  <h6>{{ title }}</h6>
-  <p>{{ value }}</p>
-</div>
+  <div class="info-card" :style="{ backgroundColor: fill }">
+    <h6>{{ title }}</h6>
+    <p v-if="datetime == null">{{ value }}</p>
+    <p v-else>{{ datetime | formatDate }}</p>
+  </div>
 </template>
 
 <script>
@@ -11,6 +12,7 @@ export default {
   props: {
     title: { default: null, type: String },
     value: { default: null, type: [String, Number] },
+    datetime: { default: null, type: String },
     fill: { default: null, type: String }
   }
 };

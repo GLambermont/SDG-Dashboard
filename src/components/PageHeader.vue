@@ -1,6 +1,8 @@
 <template>
   <div class="page-header">
-    <router-link to='/' class="logo"><img src="../images/logos/logo_sdg-dashboard.svg" alt="Smart Data Grid"></router-link>
+    <router-link to="/" class="logo">
+      <img src="../images/logos/logo_sdg-dashboard.svg" alt="Smart Data Grid" />
+    </router-link>
 
     <nav class="main-nav">
       <router-link :to="{ name: 'home' }">Home</router-link>
@@ -11,7 +13,7 @@
 
 <script>
 export default {
-  name: 'PageHeader',
+  name: "PageHeader"
 };
 </script>
 
@@ -52,8 +54,8 @@ export default {
 
     // Link divider
     &:not(:first-child)::after {
-      content: '';
-      @include pos-center('y');
+      content: "";
+      @include pos-center("y");
       left: 0;
       height: 16px;
       border-left: 1px solid $sdg-c-divider-dark-1;

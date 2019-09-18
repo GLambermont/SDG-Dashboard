@@ -7,35 +7,39 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 import ListItem from "@/components/ListItem";
 
 export default {
-  name: 'NodeListComponent',
+  name: "NodeListComponent",
   components: {
     ListItem
   },
   data: () => {
     return {
       list: []
-    }
+    };
   },
   methods: {
-    update: function (item) {
-      router.push({ name: '/dashboard/sensor-info', query: {
-        node: this.node,
-        sensor: item
-      }})
+    update: function(item) {
+      router.push({
+        name: "/dashboard/sensor-info",
+        query: {
+          node: this.node,
+          sensor: item
+        }
+      });
     }
   },
-  mounted () {
-    axios.get(this.$hostname + '/v0/sensors')
+  mounted() {
+    axios
+      .get(this.$hostname + "/v0/sensors")
       .then(resp => {
-        this.list = resp.data
+        this.list = resp.data;
       })
       .catch(err => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   }
 };
 </script>

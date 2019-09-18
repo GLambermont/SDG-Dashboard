@@ -9,14 +9,14 @@
     <div class="input-container">
       <SearchIcon class="icon" v-if="type === 'search'" />
 
-      <component 
-        :is="type === 'textarea' ? 'textarea' : 'input'" 
+      <component
+        :is="type === 'textarea' ? 'textarea' : 'input'"
         :type="type === 'textarea' ? null : convertedInputType"
         :required="type === 'textarea' ? null : required"
         :pattern="type === 'textarea' ? null : pattern"
         :style="inputStyles"
         :disabled="disabled"
-        :cols="type === 'textarea' ? cols : null" 
+        :cols="type === 'textarea' ? cols : null"
         :rows="type === 'textarea' ? rows : null"
         :placeholder="placeholder"
         @focus="isActive = true"
@@ -26,16 +26,20 @@
       ></component>
     </div>
 
-    <p class="caption" v-if="$slots.caption"><slot name="caption"/></p>
-    <p class="caption" v-if="$slots['error-caption'] && isInvalid"><slot name="error-caption"/></p>
+    <p class="caption" v-if="$slots.caption">
+      <slot name="caption" />
+    </p>
+    <p class="caption" v-if="$slots['error-caption'] && isInvalid">
+      <slot name="error-caption" />
+    </p>
   </fieldset>
 </template>
 
 <script>
-import { SearchIcon } from 'vue-feather-icons'
+import { SearchIcon } from "vue-feather-icons";
 
 export default {
-  name: 'TextInput',
+  name: "TextInput",
   components: {
     SearchIcon
   },
@@ -45,9 +49,24 @@ export default {
       isActive: false,
       isValid: false,
       isInvalid: false,
-      supportedTypes: ['date', 'datetime-local', 'email', 'month', 'number', 'password', 'range', 'search', 'tel', 'text', 'time', 'url', 'week', 'textarea'],
-      value: ''
-    }
+      supportedTypes: [
+        "date",
+        "datetime-local",
+        "email",
+        "month",
+        "number",
+        "password",
+        "range",
+        "search",
+        "tel",
+        "text",
+        "time",
+        "url",
+        "week",
+        "textarea"
+      ],
+      value: ""
+    };
   },
   mounted() {
     this.id = this._uid;
@@ -55,63 +74,65 @@ export default {
   props: {
     disabled: { default: false, type: Boolean },
     placeholder: { default: null, type: String },
-    'read-only': { default: false, type: Boolean },
+    "read-only": { default: false, type: Boolean },
     required: { default: false, type: Boolean },
     pattern: { default: null, type: String },
     tag: { default: null, type: String },
     fill: { default: null, type: String },
-    type: { default: 'text', type: String },
+    type: { default: "text", type: String },
     cols: { default: 30, type: Number },
     rows: { default: 10, type: Number }
   },
   computed: {
     // Set text of tag element
     tagText() {
-      if (this.tag != null && this.tag != '') {
+      if (this.tag != null && this.tag != "") {
         return this.tag;
       } else if (this.tag != null && this.required) {
-        return '(required)';
+        return "(required)";
       } else if (this.tag != null && !this.required) {
-        return '(optional)';
+        return "(optional)";
       }
     },
 
     // Classes for the fieldset element
     baseClasses() {
       return {
-        'is-disabled': this.disabled,
-        'is-active': this.isActive,
-        'is-valid': this.required && this.isValid,
-        'is-invalid': this.required && this.isInvalid,
-      }
+        "is-disabled": this.disabled,
+        "is-active": this.isActive,
+        "is-valid": this.required && this.isValid,
+        "is-invalid": this.required && this.isInvalid
+      };
     },
 
     // Conditional styling for the input and textarea elements
     inputStyles() {
-      return { backgroundColor: this.fill != null && (this.fill || '#F2F2F2') }
+      return { backgroundColor: this.fill != null && (this.fill || "#F2F2F2") };
     },
 
     // Convert type to a text type
     convertedInputType() {
-      if(this.supportedTypes.includes(this.type)) {
+      if (this.supportedTypes.includes(this.type)) {
         return this.type;
       } else {
         // Show a warning and use the text type when an invalid type is given
-        console.warn(`${this.type} is not a valid type for the TextInput component. The default text type will be used.`);
-        return 'text';
+        console.warn(
+          `${this.type} is not a valid type for the TextInput component. The default text type will be used.`
+        );
+        return "text";
       }
     }
   },
   methods: {
     // Validate the input based on native HTML validation
     validate() {
-      const inputEl = this.$el.querySelector('input');
+      const inputEl = this.$el.querySelector("input");
 
       this.isValid = inputEl.validity.valid;
       this.isInvalid = !inputEl.validity.valid;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -142,7 +163,8 @@ label {
   transition: box-shadow 0.125s ease;
 }
 
-input, textarea {
+input,
+textarea {
   display: block;
   padding: 12px;
   width: 100%;
@@ -168,7 +190,7 @@ input, textarea {
 }
 
 .icon {
-  @include pos-center('y');
+  @include pos-center("y");
   left: 12px;
   width: 24px;
   height: 24px;

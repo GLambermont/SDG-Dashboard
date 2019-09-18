@@ -1,32 +1,35 @@
 <template>
-<li class="floating-list-item" :class="{ 'is-active': isActive }">
-  <div class="info" @mouseover="infoHover = true" @mouseleave="infoHover = false">
-    <div class="info-scroll-container" :class="{ 'is-scrolling': infoHover && scrollingInfo }">
-      <span class="info-part name">{{ name }}</span>
-      <span class="info-part" v-for="(value, key) in info" :key="key">
-        {{ key }}: {{ value }}
-      </span>
+  <li class="floating-list-item" :class="{ 'is-active': isActive }">
+    <div class="info" @mouseover="infoHover = true" @mouseleave="infoHover = false">
+      <div class="info-scroll-container" :class="{ 'is-scrolling': infoHover && scrollingInfo }">
+        <span class="info-part name">{{ name }}</span>
+        <span class="info-part" v-for="(value, key) in info" :key="key">{{ key }}: {{ value }}</span>
+      </div>
     </div>
-  </div>
 
-  <div class="content">
-    <slot></slot>
-  </div>
-</li>
+    <div class="content">
+      <slot></slot>
+    </div>
+  </li>
 </template>
 
 <script>
 export default {
-  name: 'FloatingListItem',
+  name: "FloatingListItem",
   data() {
     return {
       infoHover: false
-    }
+    };
   },
   props: {
     isActive: { default: false, type: Boolean },
-    name: { default: '', type: String },
-    info: { default() { return {}; }, type: Object },
+    name: { default: "", type: String },
+    info: {
+      default() {
+        return {};
+      },
+      type: Object
+    },
     scrollingInfo: { default: false, type: Boolean }
   }
 };
@@ -36,8 +39,12 @@ export default {
 $active-shadow: 0 0 0 2px $sdg-c-deep-purple-50;
 
 @keyframes scrollLeft {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-100%, 0, 0); }
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
 }
 
 .floating-list-item {
@@ -55,7 +62,7 @@ $active-shadow: 0 0 0 2px $sdg-c-deep-purple-50;
     box-shadow: $sdg-shadow-1, $active-shadow;
   }
 
-  @include media('>tablet') {
+  @include media(">tablet") {
     &:hover {
       box-shadow: $sdg-shadow-2;
     }
@@ -87,8 +94,8 @@ $active-shadow: 0 0 0 2px $sdg-c-deep-purple-50;
 
   // Divider
   &:not(:last-child)::after {
-    @include pos-center('y');
-    content: '';
+    @include pos-center("y");
+    content: "";
     right: 0;
     height: 16px;
     border-left: 1px solid $sdg-c-divider-dark-1;

@@ -16,4 +16,4 @@ RUN npm run build
 
 EXPOSE 3001
 
-CMD ["http-server", "dist", "-p 3001"]
+CMD ["http-server", "dist", "-p3001"]
